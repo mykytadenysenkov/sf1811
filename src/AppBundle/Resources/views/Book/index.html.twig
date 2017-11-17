@@ -1,0 +1,12 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    
+    <h1>Books list</h1>
+    
+    {% for key, book in books %}
+        <a href={{ path('book_item', {id: key}) }}>{{ book }}</a>
+        <br>
+    {% endfor %}
+
+{% endblock %}
