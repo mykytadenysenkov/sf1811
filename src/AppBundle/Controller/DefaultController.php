@@ -19,4 +19,16 @@ class DefaultController extends Controller
             'name' => $name
         ]);
     }
+    
+    /**
+     * @Route("/feedback", name="feedback")
+     */
+    public function feedbackAction(Request $request)
+    {
+        $form = 'Here will be the form';
+        
+        return $this->render('AppBundle:Default:feedback.html.twig', [
+            'form' => $form
+        ]);
+    }
 }
