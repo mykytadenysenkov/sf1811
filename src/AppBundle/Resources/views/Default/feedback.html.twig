@@ -4,6 +4,11 @@
     
     <h1>Contact us</h1>
     
-    {{ form }}
+    {{ form_start(feedback_form) }}
+        {{ form_label(feedback_form.message) }}
+        {{ form_widget(feedback_form.message) }}
+        
+        {{ form_row(feedback_form.email) }}
+    {{ form_end(feedback_form) }}
 
 {% endblock %}

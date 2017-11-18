@@ -55,6 +55,22 @@
 
     <main role="main" class="container">
 
+    <div class='flashes'>
+      {% for flash in app.session.getFlashBag().get('success') %}
+      <div class="alert alert-success">
+           {{ flash }}
+      </div>
+      {% endfor %}
+      
+      {% for flash in app.session.getFlashBag().get('fail') %}
+      <div class="alert alert-danger">
+           {{ flash }}
+      </div>
+      {% endfor %}
+      
+      
+    </div>
+
     <div class="starter-template">
         {% block body %}{% endblock %}
     </div>
