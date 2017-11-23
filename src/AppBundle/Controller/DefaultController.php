@@ -36,6 +36,16 @@ class DefaultController extends Controller
         
         $form->handleRequest($request);
         
+        
+        // example
+        // $errors = [];
+        // foreach ($form as $fieldName => $formField) {
+        //     // each field has an array of errors
+        //     $errors[$fieldName] = $formField->getErrors();
+        // }
+        
+        // dump($errors);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
         
