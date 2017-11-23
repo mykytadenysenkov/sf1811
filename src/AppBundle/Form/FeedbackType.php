@@ -14,8 +14,8 @@ class FeedbackType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('message')
+            ->add('email', null, ['required' => false])
+            ->add('message', null, ['required' => false])
         ;
     }
     
