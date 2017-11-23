@@ -5,7 +5,6 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FeedbackType extends AbstractType
 {
@@ -17,7 +16,6 @@ class FeedbackType extends AbstractType
         $builder
             ->add('email')
             ->add('message')
-            ->add('submit', SubmitType::class)
         ;
     }
     
@@ -38,6 +36,4 @@ class FeedbackType extends AbstractType
     {
         return 'appbundle_feedback';
     }
-
-
 }

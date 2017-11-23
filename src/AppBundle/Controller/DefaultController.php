@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Feedback;
 use AppBundle\Form\FeedbackType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class DefaultController extends Controller
 {
@@ -31,6 +32,8 @@ class DefaultController extends Controller
         $feedback = new Feedback();
         $feedback->setIpAddress($request->getClientIp());
         $form = $this->createForm(FeedbackType::class, $feedback);
+        $form->add('submit', SubmitType::class);
+        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +42,6 @@ class DefaultController extends Controller
             $em->persist($feedback);
             $em->flush();
             
-            $this->addFlash('fail', 'WRONG');
             $this->addFlash('success', 'Message saved');
             return $this->redirectToRoute('feedback'); // RedirectResponse
         }
