@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Book;
 
 class BookController extends Controller
 {
@@ -15,7 +16,10 @@ class BookController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $books = [1 => 'book 1', 'book 2'];
+        $books = $this
+            ->getRepository()
+            ->findAll()
+        ;
         
         return ['books' => $books];
     }
@@ -24,10 +28,24 @@ class BookController extends Controller
      * @Route("/books/{id}", name="book_item", requirements={"id":"[0-9]+"})
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($id, Request $request)
     {
-        $book = 'Here will be the book ' . $id;
+        $book = $this
+            ->getRepository()
+            ->find($id)
+        ;
+        
+        if (!$book) {
+            throw $this->createNotFoundException('D\'oh! Book not found');
+        }
         
         return ['book' => $book];
+    }
+    
+    private function getRepository()
+    {
+        return $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Book');
     }
 }

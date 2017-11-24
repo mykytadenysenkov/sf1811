@@ -4,8 +4,8 @@
     
     <h1>Books list</h1>
     
-    {% for key, book in books %}
-        <a href={{ path('book_item', {id: key}) }}>{{ book }}</a>
+    {% for book in books %}
+        <a href={{ path('book_item', {id: book.id}) }}>{{ book.title }} : {{ book.price }}</a>
         <br>
     {% endfor %}
 
