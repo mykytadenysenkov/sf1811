@@ -19,7 +19,7 @@ class BookController extends Controller
     {
         $books = $this
             ->getRepository()
-            ->findAll()
+            ->findSortedByMyCriteria()
         ;
         
         return ['books' => $books];
@@ -40,6 +40,9 @@ class BookController extends Controller
             throw $this->createNotFoundException('D\'oh! Book not found');
         }
         
+        $manager = $this->get('app.book_export_manager');
+        $manager->exportToFile($book);
+
         return ['book' => $book];
     }
     
@@ -74,7 +77,7 @@ class BookController extends Controller
     private function getRepository()
     {
         return $this
-            ->getDoctrine()
+            ->get('doctrine')
             ->getRepository('AppBundle:Book');
     }
 }

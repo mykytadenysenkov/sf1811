@@ -16,3 +16,6 @@
 /vendor/
 /web/bundles/
 /_files
+!/web/export
+/web/export/*
+!web/export/.gitkeep
