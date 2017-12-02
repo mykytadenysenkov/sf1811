@@ -4,12 +4,18 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+
 
 class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     * @Template()
      */
     public function login(Request $request, AuthenticationUtils $authUtils)
     {
@@ -19,9 +25,9 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
     
-        return $this->render('security/login.html.twig', array(
+        return array(
             'last_username' => $lastUsername,
             'error'         => $error,
-        ));
+        );
     }
 }
