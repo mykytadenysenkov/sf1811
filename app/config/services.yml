@@ -38,3 +38,11 @@ services:
         class: AppBundle\Service\BookExportManager
         arguments: ["@logger", "%kernel.root_dir%", "%export_dir%"]
         public: true
+        
+    app.pdf.book:
+        class: AppBundle\PDF\Export\BookPdfExport
+        public: true
+        
+    app.pdf.category:
+        class: AppBundle\PDF\Export\CategoryPdfExport
+        public: true

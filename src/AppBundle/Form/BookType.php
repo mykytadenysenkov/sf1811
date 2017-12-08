@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FeedbackType extends AbstractType
+class BookType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,8 +14,15 @@ class FeedbackType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', null, ['required' => false])
-            ->add('message', null, ['required' => false])
+            ->add('title')
+            ->add('description')
+            ->add('price')
+            ->add('category', null, [
+                'choice_label' => 'name',
+                'placeholder' => null,
+                'expanded' => false,
+                'multiple' => false
+            ])
         ;
     }
     
@@ -25,7 +32,7 @@ class FeedbackType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Feedback'
+            'data_class' => 'AppBundle\Entity\Book'
         ));
     }
 

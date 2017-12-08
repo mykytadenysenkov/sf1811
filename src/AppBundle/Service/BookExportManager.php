@@ -24,7 +24,7 @@ class BookExportManager
         $this->logger->info('Starting to export book ' . $book->getId());
         $text = $book->getTitle() . PHP_EOL . $book->getDescription();
         
-        $file_put_contents(
+        $res = @file_put_contents(
             $this->getPath() . $this->getFilename($book),
             $text
         );

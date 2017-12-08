@@ -20,6 +20,8 @@ class DefaultController extends Controller
     {
         $name = 'Bob';
         
+        $this->get('app.pdf.book')->exportItem('test');
+        
         return ['name' => $name];
     }
     

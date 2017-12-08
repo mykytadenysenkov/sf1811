@@ -4,7 +4,7 @@ security:
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    
     providers:
         our_db_provider:
             entity:
@@ -26,6 +26,9 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+            logout:
+                path:   logout
+                target: homepage
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
