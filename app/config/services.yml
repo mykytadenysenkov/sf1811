@@ -46,3 +46,20 @@ services:
     app.pdf.category:
         class: AppBundle\PDF\Export\CategoryPdfExport
         public: true
+        
+    # app.command.test:
+    #     class: AppBundle\Command\TestCommand
+    #     arguments: ["@app.book_export_manager", "@doctrine"]
+    #     tags: 
+    #         - { name: console.command }
+    
+    app.twig.test:
+        class: AppBundle\Twig\TestExtension
+        tags:
+            - { name: 'twig.extension' }
+            
+    app.listener.feedback:
+        class: AppBundle\EventListener\FeedbackListener
+        arguments: ["@logger"]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
