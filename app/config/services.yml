@@ -53,6 +53,17 @@ services:
     #     tags: 
     #         - { name: console.command }
     
+    
+    app.jsonplaceholder.factory:
+        class: AppBundle\Service\JSONPlaceholderClientFactory
+        
+        
+    app.jsonplaceholder.client:
+        class: AppBundle\Service\JSONPlaceholderClient
+        arguments: ["@app.jsonplaceholder.factory"]
+        public: true
+        
+    
     app.twig.test:
         class: AppBundle\Twig\TestExtension
         tags:
